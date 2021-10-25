@@ -65,6 +65,14 @@ namespace Microsoft.Maui.Controls.Hosting
 		};
 
 		public static IMauiHandlersCollection AddMauiControlsHandlers(this IMauiHandlersCollection handlersCollection)
-			=> handlersCollection.AddHandlers(DefaultMauiControlHandlers);
+		{
+			// Update the mappings for IView/View to work specifically for Controls
+			VisualElement.RemapForControls();
+			Label.RemapForControls();
+			Button.RemapForControls();
+			Window.RemapForControls();
+
+			return handlersCollection.AddHandlers(DefaultMauiControlHandlers);
+		}
 	}
 }
